@@ -10,11 +10,13 @@ Luego se procede a actualizar paquetes y repositorios, con el fin de tener los p
 Al iniciar el sistema operativo recién instalado se ejecútan las instrucciones
 
 $ sudo apt-get update
+
 $ sudo apt-get upgrade
 
 Instalar los siguientes paquetes adicionales requeridos previamente a la instalación del driver UHD y de openbts
 
 $ sudo apt-get install g++ erlang libreadline6-dev bind9 ntp autoconf
+
 $ sudo apt-get install libboost-all-dev
 
 el segundo dirá que no se cumplen dependencias y no instala, acto seguido se ejecuta la instrucción
@@ -31,6 +33,7 @@ $ sudo dpkg -i uhd_003.007.003-release_Ubuntu-14.04-x86_64.deb 
 Así ya se tiene instalada la tarjeta USRP con la versión de UHD correcta, se recomienda conectar a un puerto USB 3.0 y verificar usando los comandos
 
 $ uhd_find_devices
+
 $ uhd_usrp_probe
 
 a partir de aquí se pasa al instructivo indicado en el handbook Getting_Started_with_OpenBTS_Range_Networks.pdf de la pagina 25, 
@@ -42,23 +45,31 @@ $ sudo apt-get install git
 obtener la carpeta fuente y el código, preferiblemente en una carpeta de fácil acceso
 
 $ git clone https://github.com/RangeNetworks/dev.git
+
 $ cd dev
+
 $./clone.sh
 
 Verificar que se vaya a compilar la versión 5.0 
+
 $ ./switchto.sh 5.0
 
 el siguiente paso no esta en el handbook, pero se recomienda realizar para garantizar enlaces simbólicos entre los diferentes elementos a instalar, (paso hallado en https://antonraharja.com/2016/03/16/instalasi-dan-konfigurasi-openbts-5-0/)
 
 $ cd /dev/liba53
+
 $ sudo make install
+
 $ sudo ldconfig
+
 $ cd ..
 
 luego se incluye el repositorio encargado de que funcione correctamente smqueue
 
 $ sudo apt-get install software-properties-common python-software-properties 
+
 $ sudo add-apt-repository ppa:chris-lea/zeromq 
+
 $ sudo apt-get update
 
 acto seguido, con un editor de texto se procede a editar el archivo build.sh, ya que hay una dependencia que no se cumple (Ubuntu 14.04 incluye el paquete libzmq3 y no permite instalar libzmq5) y tampoco se debe instalar la versión por defecto en Ubuntu de UHD ya que previamente se ha instalado la version correcta para la tarjeta usada, las lineas a modificar son las siguientes
@@ -99,6 +110,7 @@ El registro desde nodemanager funciona y agrega los nuevos celulares a la red pa
 1. se agregan los IMSI junto al MSISDN asignado usando
 
 sudo asterisk -rx "database put IMSI IMSI####### MSISDN"
+
 sudo asterisk -rx "database put PHONENUMBER MSISDN IMSI#######" 
 
 así para cada numero que sea agregado, luego hay que editar el archivo /etc/asterisk/extensions.conf, incluyendo la siguiente linea
