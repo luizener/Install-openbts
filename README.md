@@ -68,9 +68,13 @@ installIfMissing libzmq5 se reemplaza por installIfMissing libzmq3
 se dejan como comentario o se eliminan las siguientes lineas
 
 if [ "$MANUFACTURER" == "Ettus" ]; then 
+
         installIfMissing libuhd-dev 
+        
         installIfMissing libuhd003 
+        
         installIfMissing uhd-host 
+        
 fi
 
 se guarda el archivo sin cambiar el nombre y se procede a ejecutar
