@@ -105,14 +105,15 @@ acto seguido se crea el archivo /etc/asterisk/extensions-custom.conf
 y se pega la siguiente información
 
 [from-openBTS]
-exten => _XXXX.,1,Verbose(Dialplan started)
-same = n,Set(CALLER_IMSI=${CALLERID(num)})
-same = n,Verbose(Get CID from CALLER_IMSI: ${CALLER_IMSI})
-same = n,Set(CID=${DB(IMSI/${CALLER_IMSI})})
-same = n,Set(CALLERID(num)=${CID})
-same = n,Verbose(Get IMSI from EXTEN: ${EXTEN})
-same = n,Set(IMSI=${DB(PHONENUMBER/${EXTEN})})
-same = n,Dial(SIP/00101100010/${IMSI})
+
+exten => _XXXX.,1,Verbose(Dialplan started)\n
+same = n,Set(CALLER_IMSI=${CALLERID(num)})\n
+same = n,Verbose(Get CID from CALLER_IMSI: ${CALLER_IMSI})\n
+same = n,Set(CID=${DB(IMSI/${CALLER_IMSI})})\n
+same = n,Set(CALLERID(num)=${CID})\n
+same = n,Verbose(Get IMSI from EXTEN: ${EXTEN})\n
+same = n,Set(IMSI=${DB(PHONENUMBER/${EXTEN})})\n
+same = n,Dial(SIP/00101100010/${IMSI})\n
 
 tener presente las X en la segunda linea, las cuales se deben reemplazar por los primeros números de la red que usted haya elegido, y así asterisk sabrá que debe permitir aquellos números que empiecen por este numero, ejemplo si usted elige 456-1234567 se recomienda que coloque en la parte resaltada los números 456.
 
