@@ -99,7 +99,7 @@ sudo asterisk -rx "database put PHONENUMBER MSISDN IMSI#######"
 
 así para cada numero que sea agregado, luego hay que editar el archivo /etc/asterisk/extensions.conf, incluyendo la siguiente linea
 
-# include extensions-custom.conf
+\# include extensions-custom.conf
 
 acto seguido se crea el archivo /etc/asterisk/extensions-custom.conf
 y se pega la siguiente información
