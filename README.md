@@ -1,1 +1,1 @@
-# consideraciones para instalar OpenBTS junto a una USRP B210
+# Encuentra toda la información para relizár la instalación y configuración de OpenBTS en Ubuntu
